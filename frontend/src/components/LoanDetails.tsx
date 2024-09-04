@@ -14,16 +14,10 @@ import {
 } from "@mui/material";
 import { useForm as useFormContext } from "../context/FormContext";
 import { PageRoutes } from "../constants/PageRoutes";
-
-interface LoanDetailsFormData {
-  vehiclePrice: number;
-  deposit: number;
-  loanPurpose: string;
-  loanTerm: number;
-}
+import { LoanDetailsFormData } from "../types/Form";
 
 const LoanDetails: FC = () => {
-  const { setLoanDetails } = useFormContext();
+  const { setLoanDetails, submitData } = useFormContext();
   const navigate = useNavigate();
   const {
     control,
@@ -34,7 +28,7 @@ const LoanDetails: FC = () => {
     defaultValues: {
       vehiclePrice: 0,
       deposit: 0,
-      loanPurpose: "",
+      loanPurpose: "Vehicle",
       loanTerm: 1
     }
   });
@@ -43,7 +37,7 @@ const LoanDetails: FC = () => {
 
   const onSubmit: SubmitHandler<LoanDetailsFormData> = (data) => {
     setLoanDetails(data);
-    navigate(PageRoutes.Quotes);
+    submitData();
   };
 
   return (
@@ -97,30 +91,6 @@ const LoanDetails: FC = () => {
                 error={!!errors.deposit}
                 helperText={errors.deposit?.message}
               />
-            )}
-          />
-        </Box>
-
-        <Box mb={2}>
-          <Controller
-            name="loanPurpose"
-            control={control}
-            rules={{ required: "Loan purpose is required" }}
-            render={({ field }) => (
-              <FormControl fullWidth error={!!errors.loanPurpose}>
-                <InputLabel>Loan Purpose</InputLabel>
-                <Select
-                  {...field}
-                  label="Loan Purpose"
-                  value={field.value || ""}
-                  onChange={(event) => field.onChange(event.target.value)}
-                >
-                  <MenuItem value="Vehicle">Vehicle</MenuItem>
-                  <MenuItem value="Home Improvement">Home Improvement</MenuItem>
-                  <MenuItem value="Other">Other</MenuItem>
-                </Select>
-                <FormHelperText>{errors.loanPurpose?.message}</FormHelperText>
-              </FormControl>
             )}
           />
         </Box>

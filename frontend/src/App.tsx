@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 import { Home, LoanDetails, PersonalDetails, Quotes } from "./components";
 import { PageRoutes } from "./constants/PageRoutes";
@@ -7,7 +7,6 @@ import { PageRoutes } from "./constants/PageRoutes";
 const App: FC = () => {
 
   return (
-    <Router>
         <Container>
           <Routes>
             <Route path={PageRoutes.Home} element={<Home />} />
@@ -16,7 +15,6 @@ const App: FC = () => {
             <Route path={PageRoutes.Quotes} element={<Quotes />} />
           </Routes>
         </Container>
-    </Router>
   );
 };
 

@@ -14,14 +14,7 @@ import {
 } from "@mui/material";
 import { useForm as useFormContext } from "../context/FormContext";
 import { PageRoutes } from "../constants/PageRoutes";
-
-interface PersonalDetailsFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  employmentStatus: string;
-  employerName?: string;
-}
+import { PersonalDetailsFormData } from "../types/Form";
 
 const PersonalDetails: FC = () => {
   const { setPersonalDetails } = useFormContext();

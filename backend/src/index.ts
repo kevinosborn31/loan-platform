@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import QuoteService from "./services/QuoteService";
 import { QuoteError } from "./errors/quotes";
@@ -10,24 +10,23 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.post("/quote", (req: Request, res: Response, next: NextFunction) => {
+app.post("/quote", (req: Request, res: Response) => {
   try {
     const { personalDetails, loanDetails } = req.body;
-
     const result = QuoteService.generateQuote(personalDetails, loanDetails);
     res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
+  } catch (error) {    
+    console.error('Error occurred:', error);
 
-app.use((err: Error, _: Request, res: Response) => {
-  if (err instanceof QuoteError) {
-    res.status(err.statusCode).json({ error: err.message });
-  } else {
-    res
-      .status(HTTPStatuses.INTERNAL_SERVER_ERROR)
-      .json({ error: "Internal Server Error" });
+    if (error instanceof QuoteError) {
+      res.status(error.statusCode || HTTPStatuses.INTERNAL_SERVER_ERROR).json({
+        message: error.message,
+      });
+    } else {
+      res.status(HTTPStatuses.INTERNAL_SERVER_ERROR).json({
+        message: 'An unexpected error occurred.',
+      });
+    }
   }
 });
 

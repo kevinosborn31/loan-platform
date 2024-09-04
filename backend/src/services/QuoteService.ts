@@ -14,6 +14,9 @@ class QuoteService {
   ): { quotes: Quote[] } {
     this.validateInputs(personalDetails, loanDetails);
 
+    console.log(personalDetails);
+    console.log(loanDetails);
+
     const loanAmount = this.calculateLoanAmount(loanDetails);
 
     if (loanAmount < MIN_LOAN_AMOUNT) {

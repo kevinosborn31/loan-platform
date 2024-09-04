@@ -1,3 +1,6 @@
+import { EmploymentStatus } from "../constants/EmploymentStatuses";
+import { LoanPurposes } from "../constants/LoanPurposes";
+
 export interface Fee {
   value: number;
   feeType: string;
@@ -17,15 +20,14 @@ export interface PersonalDetails {
   firstName: string;
   lastName: string;
   email: string;
-  employmentStatus: "Employed" | "Self-Employed" | "Unemployed";
-  dateOfBirth: Date;
+  employmentStatus: EmploymentStatus;
   employerName?: string;
 }
 
 export interface LoanDetails {
   vehiclePrice: number;
   deposit: number;
-  loanPurpose: "Vehicle" | "Home Improvement";
+  loanPurpose: LoanPurposes;
   loanTerm: number; // in years
 }
 
