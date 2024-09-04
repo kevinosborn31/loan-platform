@@ -63,7 +63,7 @@ describe("QuoteService", () => {
 
     const loanDetails: LoanDetails = {
       vehiclePrice: 1500,
-      deposit: 1000,
+      deposit: 2000,
       loanPurpose: LoanPurposes.Vehicle,
       loanTerm: 12,
     };
@@ -72,7 +72,7 @@ describe("QuoteService", () => {
       QuoteService.generateQuote(personalDetails, loanDetails);
     }).toThrowError(
       new QuoteError(
-        `Loan amount must be more than 1000`,
+        `Loan amount must be more than 2000`,
         HTTPStatuses.BAD_REQUEST
       )
     );

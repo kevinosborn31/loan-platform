@@ -5,7 +5,7 @@ import { HTTPStatuses } from "../constants/HTTPStatuses";
 import { QuoteError } from "../errors/quotes";
 import { Lender, LoanDetails, PersonalDetails, Quote } from "../types/quote";
 
-const MIN_LOAN_AMOUNT = 1000;
+const MIN_LOAN_AMOUNT = 2000;
 
 class QuoteService {
   static generateQuote(
