@@ -9,6 +9,7 @@ Develop a tool that allows users to enter their personal and loan-related detail
 - OPTIONAL: create a file `.env` and provide environment variable `SERVER_URL` in /frontend
 - `npm start` to run the application
 - `npm test` to test both the back end and front end
+- `cd frontend` and `npx cypress run` to run cypress integration tests
 
 ## Future development / missed requirements
 - Styling could be refined and improved particularly for mobile
@@ -18,6 +19,11 @@ Develop a tool that allows users to enter their personal and loan-related detail
 - Theming for MUI components
 - More back end endpoints such as GET quotes or GET/POST customer info for lead generation
 - Fix some small user interaction bugs and improve the overall user experience
+- Resolve babel dependency deprecation
+- Redux or other state management for scalability
+- Route guards
+- Fix broken RTL tests in FE
+- Extend Cypress tests
 
 ## Front-End Requirements
 

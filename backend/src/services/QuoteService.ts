@@ -14,6 +14,9 @@ class QuoteService {
   ): { quotes: Quote[] } {
     this.validateInputs(personalDetails, loanDetails);
 
+    loanDetails.vehiclePrice = Number(loanDetails.vehiclePrice);
+    loanDetails.deposit = Number(loanDetails.deposit);
+
     console.log(personalDetails);
     console.log(loanDetails);
 
