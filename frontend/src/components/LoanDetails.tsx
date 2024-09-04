@@ -18,7 +18,6 @@ import { LoanDetailsFormData } from "../types/Form";
 
 const LoanDetails: FC = () => {
   const { setLoanDetails, submitData } = useFormContext();
-  const navigate = useNavigate();
   const {
     control,
     handleSubmit,

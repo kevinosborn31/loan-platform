@@ -11,6 +11,7 @@ import {
 } from "../types/quote";
 import QuoteService from "./QuoteService";
 import { LoanPurposes } from "../constants/LoanPurposes";
+import { EmploymentStatus } from "../constants/EmploymentStatuses";
 
 jest.mock("../utils/calculateMonthlyRepayment");
 jest.mock("../utils/filterLenders");
@@ -41,8 +42,7 @@ describe("QuoteService", () => {
       firstName: "John",
       lastName: "Smith",
       email: "john.smith@example.com",
-      employmentStatus: "Employed",
-      dateOfBirth: new Date("1990-06-15"),
+      employmentStatus: EmploymentStatus.Employed,
     };
 
     expect(() => {
@@ -57,8 +57,7 @@ describe("QuoteService", () => {
       firstName: "John",
       lastName: "Smith",
       email: "john.smith@example.com",
-      employmentStatus: "Employed",
-      dateOfBirth: new Date("1990-06-15"),
+      employmentStatus: EmploymentStatus.Employed,
     };
 
     const loanDetails: LoanDetails = {
@@ -83,8 +82,7 @@ describe("QuoteService", () => {
       firstName: "John",
       lastName: "Smith",
       email: "john.smith@example.com",
-      employmentStatus: "Employed",
-      dateOfBirth: new Date("1990-06-15"),
+      employmentStatus: EmploymentStatus.Employed,
     };
 
     const loanDetails: LoanDetails = {
@@ -106,8 +104,7 @@ describe("QuoteService", () => {
       firstName: "John",
       lastName: "Smith",
       email: "john.smith@example.com",
-      employmentStatus: "Employed",
-      dateOfBirth: new Date("1990-06-15"),
+      employmentStatus: EmploymentStatus.Employed,
     };
 
     const loanDetails: LoanDetails = {

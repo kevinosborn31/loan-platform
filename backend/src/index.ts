@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.post("/quote", (req: Request, res: Response) => {
+app.post("/api/quote", (req: Request, res: Response) => {
   try {
     const { personalDetails, loanDetails } = req.body;
     const result = QuoteService.generateQuote(personalDetails, loanDetails);

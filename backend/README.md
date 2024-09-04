@@ -1,4 +1,4 @@
-## Front end
+## Back end
 
 ### How to run
 - `npm i` to install dependencies

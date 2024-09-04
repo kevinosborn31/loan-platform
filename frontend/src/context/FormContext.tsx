@@ -70,7 +70,7 @@ export const FormProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     try {
       const response = await axios.post(
-        process.env.BASE_URL || `${BASE_URL}/quote`,
+        process.env.BASE_URL || `${BASE_URL}/api/quote`,
         submitData
       );
 
