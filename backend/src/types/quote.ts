@@ -28,7 +28,10 @@ export interface LoanDetails {
   loanTerm: number; // in years
 }
 
-export interface QuoteRequest {
-  personalDetails: PersonalDetails;
-  loanDetails: LoanDetails;
+export interface Quote {
+  lender: Lender;
+  loanAmount: number;
+  interestRate: number;
+  fees: Fee[];
+  monthlyRepayment: number;
 }

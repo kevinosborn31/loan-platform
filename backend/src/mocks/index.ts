@@ -1,4 +1,4 @@
-import { Lender } from "../types";
+import { Lender } from "../types/quote";
 
 export const lenders: Lender[] = [
   {
