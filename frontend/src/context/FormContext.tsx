@@ -14,21 +14,21 @@ interface FormData {
 }
 
 interface FormContextProps {
-    formData: FormData;
-    setPersonalDetails: (data: PersonalDetailsFormData) => void;
-    setLoanDetails: (data: LoanDetailsFormData) => void;
-    submitData: () => void;
-    quotes: Quote[];
-    loadingQuotes: boolean;
-    clearState: () => void;
-  }
+  formData: FormData;
+  setPersonalDetails: (data: PersonalDetailsFormData) => void;
+  setLoanDetails: (data: LoanDetailsFormData) => void;
+  submitData: () => void;
+  quotes: Quote[];
+  loadingQuotes: boolean;
+  clearState: () => void;
+}
 
 const BASE_URL = process.env.SERVER_URL || "http://localhost:5000";
 
+const FormContext = createContext<FormContextProps | undefined>(undefined);
+
 export const FormProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
-
-  const FormContext = createContext<FormContextProps | undefined>(undefined);
   const [formData, setFormData] = useState<FormData>({
     personalDetails: {} as PersonalDetailsFormData,
     loanDetails: {} as LoanDetailsFormData,
@@ -45,37 +45,37 @@ export const FormProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const setLoanDetails = (data: LoanDetailsFormData) => {
     const loanData = {
       ...data,
-      deposit: parseFloat(data.deposit as unknown as string),
-      vehiclePrice: parseFloat(data.vehiclePrice as unknown as string),
+      deposit: Number(data.deposit) || 0,
+      vehiclePrice: Number(data.vehiclePrice) || 0,
     };
     console.log("Setting loan details:", loanData);
-
     setFormData((prev) => ({ ...prev, loanDetails: loanData }));
   };
-
+  
+  
   const submitData = async () => {
     setLoadingQuotes(true);
+  
+    // Ensure that deposit and vehiclePrice are numbers
     const submitData = {
       ...formData,
       loanDetails: {
         ...formData.loanDetails,
-        deposit: parseFloat(formData.loanDetails.deposit as unknown as string),
-        vehiclePrice: parseFloat(
-          formData.loanDetails.vehiclePrice as unknown as string
-        ),
+        deposit: typeof formData.loanDetails.deposit === 'number' ? formData.loanDetails.deposit : parseFloat(formData.loanDetails.deposit as unknown as string) || 0,
+        vehiclePrice: typeof formData.loanDetails.vehiclePrice === 'number' ? formData.loanDetails.vehiclePrice : parseFloat(formData.loanDetails.vehiclePrice as unknown as string) || 0,
       },
     };
-
+  
     console.log("Form data before submission:", submitData);
-
+  
     try {
       const response = await axios.post(
-        process.env.BASE_URL || `${BASE_URL}/api/quote`,
+        `${BASE_URL}/api/quote`,
         submitData
       );
-
+  
       const { quotes: quoteOptions } = response.data;
-
+  
       setQuotes(quoteOptions);
       navigate(PageRoutes.Quotes);
     } catch (error) {
@@ -112,8 +112,8 @@ export const FormProvider: FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
+// TODO: move to separate file
 export const useForm = (): FormContextProps => {
-  const FormContext = createContext<FormContextProps | undefined>(undefined);
   const context = useContext(FormContext);
   if (context === undefined) {
     throw new Error("useForm must be used within a FormProvider");
