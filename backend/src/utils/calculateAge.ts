@@ -4,14 +4,13 @@ export function calculateAge(birthDate: Date): number {
   const birthMonth = birthDate.getMonth();
   const birthDay = birthDate.getDate();
 
-  let age = today.getFullYear() - birthYear;
-  const monthDifference = today.getMonth() - birthMonth;
-  if (
-    monthDifference < 0 ||
-    (monthDifference === 0 && today.getDate() < birthDay)
-  ) {
-    age--;
-  }
+  const age =
+    today.getFullYear() -
+    birthYear -
+    (today.getMonth() < birthMonth ||
+    (today.getMonth() === birthMonth && today.getDate() < birthDay)
+      ? 1
+      : 0);
 
   return age;
 }

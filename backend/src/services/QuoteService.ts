@@ -1,5 +1,5 @@
 import { calculateMonthlyRepayment } from "../utils/calculateMonthlyRepayment";
-import { lenders } from "../mocks";
+import { mockLenders } from "../mocks/lenders";
 import { filterLenders } from "../utils/filterLenders";
 import { HTTPStatuses } from "../constants/HTTPStatuses";
 import { QuoteError } from "../errors/quotes";
@@ -24,7 +24,7 @@ class QuoteService {
     }
 
     const potentialLenders = filterLenders(
-      lenders,
+      mockLenders,
       loanDetails.loanTerm,
       loanAmount,
       loanDetails.deposit

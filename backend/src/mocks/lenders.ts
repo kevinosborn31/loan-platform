@@ -1,6 +1,6 @@
 import { Lender } from "../types/quote";
 
-export const lenders: Lender[] = [
+export const mockLenders: Lender[] = [
   {
     name: "Lender A",
     interestRate: 5.5,
@@ -27,5 +27,23 @@ export const lenders: Lender[] = [
     maxTerm: 60,
     maxLoanAmount: 100000,
     requiredDepositPercentage: 50,
+  },
+  {
+    name: "Lender D",
+    interestRate: 4.8,
+    fees: [{ value: 20, feeType: "administration fee" }],
+    minTerm: 24,
+    maxTerm: 72,
+    maxLoanAmount: 50000,
+    requiredDepositPercentage: 10,
+  },
+  {
+    name: "Lender E",
+    interestRate: 6.5,
+    fees: [{ value: 15, feeType: "annual fee" }],
+    minTerm: 12,
+    maxTerm: 36,
+    maxLoanAmount: 15000,
+    requiredDepositPercentage: 15,
   },
 ];

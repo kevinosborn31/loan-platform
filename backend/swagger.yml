@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Quote Service API
+  title: Quote API
   description: API for generating quotes based on personal and loan details.
   version: 1.0.0
 servers:
