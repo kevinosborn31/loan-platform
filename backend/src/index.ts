@@ -17,15 +17,17 @@ app.post("/quote", (req: Request, res: Response, next: NextFunction) => {
     const result = QuoteService.generateQuote(personalDetails, loanDetails);
     res.json(result);
   } catch (error) {
-    next(error); 
+    next(error);
   }
 });
 
-app.use((err: Error, _: Request, res: Response,) => {
+app.use((err: Error, _: Request, res: Response) => {
   if (err instanceof QuoteError) {
     res.status(err.statusCode).json({ error: err.message });
   } else {
-    res.status(HTTPStatuses.INTERNAL_SERVER_ERROR).json({ error: "Internal Server Error" });
+    res
+      .status(HTTPStatuses.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal Server Error" });
   }
 });
 

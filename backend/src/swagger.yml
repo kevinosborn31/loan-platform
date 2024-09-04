@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: Quote Service API
+  description: API for generating quotes based on personal and loan details.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+    description: Local server
+paths:
+  /quote:
+    post:
+      summary: Generate a quote based on personal and loan details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                personalDetails:
+                  type: object
+                  description: Information about the individual for whom the quote is generated.
+                  properties:
+                    name:
+                      type: string
+                      description: Full name of the individual.
+                    age:
+                      type: integer
+                      description: Age of the individual.
+                loanDetails:
+                  type: object
+                  description: Details of the loan for which the quote is generated.
+                  properties:
+                    amount:
+                      type: number
+                      format: float
+                      description: Loan amount.
+                    term:
+                      type: integer
+                      description: Loan term in months.
+              required:
+                - personalDetails
+                - loanDetails
+      responses:
+        "200":
+          description: Successful response with quote details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quoteAmount:
+                    type: number
+                    format: float
+                    description: The calculated quote amount.
+                  interestRate:
+                    type: number
+                    format: float
+                    description: The interest rate applied.
+        "400":
+          description: Bad request if the input data is invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message describing what went wrong.
+        "500":
+          description: Internal server error for unexpected issues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: General error message for server issues.
+components:
+  schemas:
+    QuoteError:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: HTTP status code for the error.
+        message:
+          type: string
+          description: Error message.
+    HTTPStatuses:
+      type: object
+      properties:
+        INTERNAL_SERVER_ERROR:
+          type: integer
+          description: Status code for internal server errors.

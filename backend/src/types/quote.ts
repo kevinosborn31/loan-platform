@@ -18,6 +18,7 @@ export interface PersonalDetails {
   lastName: string;
   email: string;
   employmentStatus: "Employed" | "Self-Employed" | "Unemployed";
+  dateOfBirth: Date;
   employerName?: string;
 }
 

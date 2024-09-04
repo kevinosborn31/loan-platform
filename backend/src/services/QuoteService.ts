@@ -31,10 +31,14 @@ class QuoteService {
     );
 
     if (potentialLenders.length === 0) {
-      return { quotes: [] }; 
+      return { quotes: [] };
     }
 
-    const quotes = this.generateQuotes(potentialLenders, loanAmount, loanDetails.loanTerm);
+    const quotes = this.generateQuotes(
+      potentialLenders,
+      loanAmount,
+      loanDetails.loanTerm
+    );
 
     return { quotes };
   }

@@ -8,16 +8,16 @@ export const lenders: Lender[] = [
     minTerm: 12,
     maxTerm: 60,
     maxLoanAmount: 10000,
-    requiredDeposit: 0
+    requiredDepositPercentage: 0,
   },
   {
     name: "Lender B",
     interestRate: 5.0,
-    fees: [{ value: 10, feeType: "application fee" }],
+    fees: [{ value: 10, feeType: "processing fee" }],
     minTerm: 12,
     maxTerm: 60,
     maxLoanAmount: 25000,
-    requiredDeposit: 25
+    requiredDepositPercentage: 25,
   },
   {
     name: "Lender C",
@@ -26,6 +26,6 @@ export const lenders: Lender[] = [
     minTerm: 12,
     maxTerm: 60,
     maxLoanAmount: 100000,
-    requiredDeposit: 50
+    requiredDepositPercentage: 50,
   },
 ];

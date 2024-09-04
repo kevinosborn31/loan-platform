@@ -1,17 +1,38 @@
-import { testMonthlyRepayment } from './testing/testMonthlyRepayment';
+import { Fee } from "../types/quote";
+import { calculateMonthlyRepayment } from "./calculateMonthlyRepayment";
 
-test('calculates monthly repayment correctly for standard loan', () => {
-    testMonthlyRepayment(20000, 5, 5, 500, 387);
+const testMonthlyRepayment = (
+  loanAmount: number,
+  annualInterestRate: number,
+  loanLengthYears: number,
+  fees: Fee[],
+  expectedMonthlyRepayment: number
+) => {
+  const result = calculateMonthlyRepayment(
+    loanAmount,
+    annualInterestRate,
+    loanLengthYears,
+    fees
+  );
+  expect(result).toBe(expectedMonthlyRepayment);
+};
+
+test("calculates monthly repayment correctly for standard loan", () => {
+  const fees: Fee[] = [{ value: 500, feeType: "Processing" }];
+  testMonthlyRepayment(20000, 5, 5, fees, 387);
 });
 
-test('calculates monthly repayment correctly with zero interest rate', () => {
-    testMonthlyRepayment(20000, 0, 5, 500, 342);
+test("calculates monthly repayment correctly with zero interest rate", () => {
+  const fees: Fee[] = [{ value: 500, feeType: "Processing" }];
+  testMonthlyRepayment(20000, 0, 5, fees, 342);
 });
 
-test('calculates monthly repayment correctly with zero fees', () => {
-    testMonthlyRepayment(15000, 7, 3, 0, 463);
+test("calculates monthly repayment correctly with zero fees", () => {
+  const fees: Fee[] = [];
+  testMonthlyRepayment(15000, 7, 3, fees, 463);
 });
 
-test('calculates monthly repayment correctly with high fees', () => {
-    testMonthlyRepayment(15000, 7, 3, 2000, 525);
+test("calculates monthly repayment correctly with high fees", () => {
+  const fees: Fee[] = [{ value: 2000, feeType: "Application" }];
+  testMonthlyRepayment(15000, 7, 3, fees, 525);
 });

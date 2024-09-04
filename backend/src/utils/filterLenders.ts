@@ -7,7 +7,8 @@ export const filterLenders = (
   deposit: number
 ) => {
   return lenders.filter((lender) => {
-    const minimumRequiredDeposit = (lender.requiredDepositPercentage / 100) * loanAmount;
+    const minimumRequiredDeposit =
+      (lender.requiredDepositPercentage / 100) * loanAmount;
 
     return (
       loanTerm >= lender.minTerm &&
