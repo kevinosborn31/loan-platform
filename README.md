@@ -2,7 +2,7 @@
 
 ## Objective
 
-Develop a tool that allows users to enter their personal and loan-related details through a form. After form submission, the server will process this information and return loan offers from multiple lenders based on the submitted details. This project aims to test the candidate's ability to integrate front-end and back-end technologies with a focus on code structure, types, tests, and clean functional code. A polished UI is not required, but practical application and user interaction are crucial.
+Develop a tool that allows users to enter their personal and loan-related details through a form. After form submission, the server will process this information and return loan offers from multiple lenders based on the submitted details.
 
 ## Local environment set up
 - `npm i` to install the required dependencies
